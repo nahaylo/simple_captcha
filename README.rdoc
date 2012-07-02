@@ -24,11 +24,11 @@ backward compatibility with previous versions of Rails.
 
 ==Installation
 
-  gem "galetahub-simple_captcha", :require => "simple_captcha"
+  gem "nahaylo-simple_captcha", :require => "simple_captcha"
 
 or
 
-  gem 'galetahub-simple_captcha', :require => 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
+  gem 'nahaylo-simple_captcha', :require => 'simple_captcha', :git => 'git://github.com/nahaylo/simple_captcha.git'
 
 ==Setup
 
@@ -77,7 +77,7 @@ and in the model class add this code
 
   <%= form_for @user do |form| -%>
     ...
-    <%= form.simple_captcha :label => "Enter numbers.." %>
+    <%= form.simple_captcha :label => "Enter numbers..", :field_options => { :size => nil } %>
     ...
   <% end -%>
 

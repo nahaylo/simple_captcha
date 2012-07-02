@@ -26,7 +26,7 @@ module SimpleCaptcha
         end
         
         def simple_captcha_field(options={})
-          text_field(:captcha, :value => '', :autocomplete => 'off') +
+          text_field(:captcha, { :value => '', :autocomplete => 'off' }.merge(options[:field_options] || {})) +
           hidden_field(:captcha_key, {:value => options[:field_value]})
         end
     end

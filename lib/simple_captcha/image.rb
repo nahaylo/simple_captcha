@@ -4,14 +4,14 @@ module SimpleCaptcha #:nodoc
 
     mattr_accessor :image_styles
     @@image_styles = {
-      'embosed_silver'  => ['-fill darkblue', '-shade 20x60', '-background white'],
-      'simply_red'      => ['-fill darkred', '-background white'],
-      'simply_green'    => ['-fill darkgreen', '-background white'],
-      'simply_blue'     => ['-fill darkblue', '-background white'],
-      'distorted_black' => ['-fill darkblue', '-edge 10', '-background white'],
-      'all_black'       => ['-fill darkblue', '-edge 2', '-background white'],
-      'charcoal_grey'   => ['-fill darkblue', '-charcoal 5', '-background white'],
-      'almost_invisible' => ['-fill red', '-solarize 50', '-background white']
+        'embosed_silver'  => ['-fill darkblue', '-shade 20x60', '-background white'],
+        'simply_red'      => ['-fill darkred', '-background white'],
+        'simply_green'    => ['-fill darkgreen', '-background white'],
+        'simply_blue'     => ['-fill darkblue', '-background white'],
+        'distorted_black' => ['-fill darkblue', '-edge 10', '-background white'],
+        'all_black'       => ['-fill darkblue', '-edge 2', '-background white'],
+        'charcoal_grey'   => ['-fill darkblue', '-charcoal 5', '-background white'],
+        'almost_invisible' => ['-fill red', '-solarize 50', '-background white']
     }
 
     DISTORTIONS = ['low', 'medium', 'high']
@@ -34,9 +34,9 @@ module SimpleCaptcha #:nodoc
 
       def distortion(key='low')
         key =
-          key == 'random' ?
-          DISTORTIONS[rand(DISTORTIONS.length)] :
-          DISTORTIONS.include?(key) ? key : 'low'
+            key == 'random' ?
+                DISTORTIONS[rand(DISTORTIONS.length)] :
+                DISTORTIONS.include?(key) ? key : 'low'
         case key.to_s
           when 'low' then return [0 + rand(2), 80 + rand(20)]
           when 'medium' then return [2 + rand(2), 50 + rand(20)]
@@ -68,7 +68,8 @@ module SimpleCaptcha #:nodoc
         params << "-pointsize 22"
         params << "-implode 0.2"
 
-        dst = Tempfile.new(RUBY_VERSION < '1.9' ? 'simple_captcha.jpg' : ['simple_captcha', '.jpg'], SimpleCaptcha.tmp_path)
+        #dst = Tempfile.new(RUBY_VERSION < '1.9' ? 'simple_captcha.jpg' : ['simple_captcha', '.jpg'], SimpleCaptcha.tmp_path)
+        dst = RUBY_VERSION < '1.9' ? Tempfile.new('simple_captcha.jpg') : Tempfile.new(['simple_captcha', '.jpg'])
         dst.binmode
 
         params << "label:#{text} '#{File.expand_path(dst.path)}'"
